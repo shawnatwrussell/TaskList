@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=OriginalSurfer-Regular|OpenSansCondensed">
     <link rel="stylesheet" href="/fonts/OriginalSurfer-Regular.ttf">
 
+
     <link href="/css/site.css" rel="stylesheet">
     <link href="/css/style.css" rel="stylesheet">
 
@@ -28,7 +29,7 @@
     <header>
         <!-- START Fixed navbar -->
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class="navbar-brand" href="">Honu</a>
+            <a class="cool-text" href="">Honu</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -54,12 +55,13 @@
 
     <main>
         <div class="container">
+            <hr>
             <div class="row">
                 <div class="offset-2 col-8">
                     <div class="table-responsive">
                         <button type="button" data-toggle="modal" data-target="#newTaskItem" class="btn btn-success">Add
                             a New Task</button>
-                        <table class="table table-striped" id="tasks">
+                        <table class="table table-striped" id="taskData">
                             <thead class="thead-dark">
                                 <tr>
                                     <th class="d-none"></th>
@@ -89,7 +91,10 @@
 
 
 
-
+<!--NAV DROPDOWN ICONS: <i class="fas fa-exclamation-circle"></i> = Overdue
+    <i class="far fa-times-circle"></i> = Incompleted
+    <i class="far fa-check-circle"></i> = Completed
+</i>-->
 
 
 
@@ -124,16 +129,23 @@
             <td id="dueDate"></td>
             <td id="tdCrud">
 
-                <a onclick="completeTask(this)" class="btn btn-sm btn-outline-dark btn-success"></a>
-                <a onclick="popEditModal(this)" class="btn btn-sm btn-outline-dark btn-info"></a>
-                <a onclick="deleteTask(this)" class="btn btn-sm btn-outline-dark btn-danger"></a>
+                <a onclick="completeTask(this)" class="btn btn-sm btn-outline-dark btn-success">Done</a>
+                <!--TODO: Add a Checkbox Btn-->
+                <!--<i class="far fa-check-square"></i><i class="fas fa-check"></i>-->
+                <a onclick="popEditModal(this)" class="btn btn-sm btn-outline-dark btn-info">Edit</a>
+                <!--TOD: Add a Pencil Icon Btn-->
+                <!--<i class="fas fa-pencil-alt"></i><i class="far fa-edit"></i><i class="fas fa-pencil-alt"></i>-->
+                <a onclick="deleteTask(this)" class="btn btn-sm btn-outline-dark btn-danger">Delete</a>
+                <!--TODO: Add a Trashcan Icon Btn-->
+                <!--<i class="fas fa-trash-alt"></i>-->
             </td>
         </tr>
     </template>
     <!--END TEMPLATE SECTION-->
 
 
-    <!-- Modal Section -->
+
+    <!-- NEW TASK Modal Section -->
     <div class="modal" id="newTaskItem">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -142,7 +154,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                 </div>
                 <div class="modal-body">
-                    <form onsubmit="createTask(this)">
+                    <form>
                         <input type="hidden" name="ModalCreate" value="true" />
                         <div class="form-group">
                             <label class="font-weight-bold" for="newTask">Title</label>
@@ -157,8 +169,8 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary btn-wide" onclick="saveTask()" data-dismiss="modal"
-                        style="background-color:rgb(16, 143, 143)">Save
+                    <button type="submit" class="btn btn-secondary btn-wide" onclick="createTask(this)"
+                        data-dismiss="modal" style="background-color:rgb(16, 143, 143)">Save
                         New Task</button>
                     <button type="" class="btn btn-secondary" style="background-color:rgb(104, 107, 107)"
                         data-dismiss="modal">Close</button>
@@ -166,8 +178,42 @@
             </div>
         </div>
     </div>
-
     <!-- End Modal Section -->
+
+    <!-- EDIT TASK Modal Section -->
+    <div class="modal" id="editModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Task</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <input type="hidden" name="ModalEdit" value="true" />
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="editTask">Title</label>
+                            <input type="text" class="form-control cool-border" name="editTitle" id="editTitle"
+                                placeholder="Edit Task">
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="description">Due Date:</label>
+                            <input type="date" class="form-control cool-border" name="editDueDate" id="editDueDate"
+                                placeholder="Edit Due Date">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary btn-wide" onclick="saveTask(this)"
+                        data-dismiss="modal" style="background-color:rgb(16, 143, 143)">Save Task</button>
+                    <button type="" class="btn btn-secondary" style="background-color:rgb(104, 107, 107)"
+                        data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Modal Section -->
+
 
     <!--Return to Top-->
     <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
@@ -185,6 +231,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
+    <script src="https://kit.fontawesome.com/bd89795843.js" crossorigin="anonymous"></script>
+    <!--https://fontawesome.com/license-->
+
     <script src="/js/site.js"></script>
 
 

@@ -1,3 +1,4 @@
+//RUNS WHEN PAGE COMPLETES LOADING
 $(function () {
     prepareLocalStorage();
     listTasks();
@@ -6,19 +7,21 @@ $(function () {
     document.querySelectorAll(`[data-toggle = "tooltip"]`).tool - tip({
         trigger: "hover"
     });
-    // $(`[data-toggle = "tooltip"]`).tool - tip({trigger: "hover"});
+    // jQuery version: $(`[data-toggle = "tooltip"]`).tool - tip({trigger: "hover"});
 
     //SET TASK COUNT
     document.getElementById("taskCount").innerText = `CURRENT TASKS (${getTaskCount()})`;
-    //$("#taskCount").text(`CURRENT TASKS (${getTAskCount()})`);
+    //jQUery version: $("#taskCount").text(`CURRENT TASKS (${getTAskCount()})`);
 
 })
 
+//CREATES AN EMPTY ARRAY
 function prepareLocalStorage() {
     if (getLocalStorage() == null)
         setLocalStorage(new Array());
 }
 
+//USER INPUT FROM MODAL
 function createTask(formData) {
     let tasks = getLocalStorage();
 
@@ -35,30 +38,32 @@ function createTask(formData) {
     listTasks();
 }
 
+function editTaskData() {
 
+}
+
+//SAVE EDITED TASK INFO
 function saveTask() {
-    //Grabs the Events out of Local Storage
-    let taskData = JSON.parse(localStorage.getItem("tasksArray")) || tasksArray;
 
-    let obj = {};
-    obj["title"] = document.getElementById("title").value;
-    obj["dueDate"] = document.getElementById("dueDate").value;
+}
 
-    taskData.push(obj);
 
-    localStorage.setItem("tasksArray", JSON.stringify(taskData));
 
-    //Access the Values from the Form by ID and Add an Object to the Array
-    listTasks(taskData);
+function generateId() {
+    return `xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx`.replace(/[xy]/g, function (c) {
+        var r = Math.random() * 16 | 0,
+            v = c == 'x' ? r : (r & 0x3 | 0x8);
+        return v.toString(16);
+    });
 }
 
 //DISPLAY IN TABLE
 function listTasks() {
-    const template = document.getElementById("taskItem-Template");
-    const eventBody = document.getElementById("tasksBody");
+    const template = document.getElementById("taskItems-Template");
+    const tasksBody = document.getElementById("tasksBody");
     //Grabs the Events out of Local Storage
     let tasks = getLocalStorage();
-    taskBody.innerHTML = "";
+    tasksBody.innerHTML = "";
     for (var row = 0; row < tasks.length; row++) {
         const taskRow = document.importNode(template.contentEditable, true);
 
@@ -74,9 +79,6 @@ function listTasks() {
     }
 }
 
-function editTaskData() {
-
-}
 
 function deleteTask(element) {
     clearToolTip();
@@ -103,14 +105,6 @@ function getIndex(element) {
 
 }
 
-function generateId() {
-    return `xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx`.replace(/[xy]/g, function (c) {
-        var r = Math.random() * 16 | 0,
-            v = c == 'x' ? r : (r & 0x3 | 0x8);
-        return v.toString(16);
-    });
-}
-
 function getTaskCount() {
 
 }
@@ -135,27 +129,69 @@ function clearToolTip() {
 
 }
 
-//function taskData() {
+function triggerCustomAlert() {
 
-    completed:
-    created:
-    dueDate:
-    id:
-    title:
-//}
+}
 
+function popEditModal() {
+
+}
 
 
+function completeTask(button) {
+    let cell = button.parentNode;
+    let row = cell.parentNode;
+    let cellId = row.children[0];
+    let taskId = cellId.innerText;
+    let tasksArray = getLocalStorage();
+    let task = tasksArray.find(t => t.id == taskId);
+    task.completed = true;
+
+    setLocalStorage(tasksArray);
+    listTasks(tasksArray);
+}
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//function displayTask(taskArray) {dataRow.getElementById("id").textContent = taskArray[row].id;}
+
+
+
+
+
+
+
+//function taskData() {completed:created:dueDate:id:title:}
 //function displayTask(taskArray) {}
 //function editTaskData(){}
 //function filterTaskData(){}
 //function saveFilteredData(){}
 //function createTaskArray(){}
 //function displayFilteredData(){}
-//function displayTask(taskArray) {}
+//
 //function clearTask() {}
 //function getTaskData() {
 //let taskData = JSON.parse(localStorage.getItem("tasksArray")) || []; //the sign || means OR
@@ -164,3 +200,18 @@ function clearToolTip() {
 //localStorage.setItem("tasksArray", JSON.stringify(taskData));
 //}
 //return taskData;}
+//Data from USER INPUT-MODAL
+//function saveTask() {
+//Grabs the Events out of Local Storage
+//let taskData = JSON.parse(localStorage.getItem("tasksArray")) || tasksArray;
+
+//let obj = {};
+//obj["title"] = document.getElementById("title").value;
+//obj["dueDate"] = document.getElementById("dueDate").value;
+
+//taskData.push(obj);
+
+// localStorage.setItem("tasksArray", JSON.stringify(taskData));
+
+//Access the Values from the Form by ID and Add an Object to the Array
+//listTasks(taskData);}

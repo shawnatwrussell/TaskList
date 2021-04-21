@@ -7,20 +7,27 @@ body {
     height: 100%;
 }
 
+/* Style page content */
+.main {
+    margin-left: 160px;
+    /* Same as the width of the sidebar */
+    padding: 0px 10px;
+}
+
 .hr {
-    border: 3px solid #014474;
+    border: 3px solid #08b5bb;
     border-radius: 2px;
 }
 
 /*HR on DASHBOARD page */
 hr.cool-line {
     margin-top: 20px;
-    outline: 2px solid #014474;
-    border: 2px solid black;
+    outline: 2px solid #181717;
+    border: 2px solid #08b5bb;
 }
 
 .tooltip-inner {
-    background-color: #014474;
+    background-color: #08b5bb;
     border: 2px solid #181717;
     font-weight: bold;
     color: #181717;
@@ -32,12 +39,55 @@ tr.complete>td:nth-child(-n+4) {
 }
 
 .modal-header {
-    border-bottom: 2px solid black
+    border-bottom: 2px solid #181717
 }
 
+/*Rule for the 3 column Card Header*/
+.cool-header {
+    background-color: antiquewhite;
+}
 
+/*Rule for the cards' border & outline*/
+.cool-border {
+    outline: 2px solid #181717;
+    border: 1px solid #08b5bb;
+    ;
+}
 
+.cool-text {
+    color: #08b5bb;
+    text-shadow: -1px 0 #181717,
+    0 1px #181717,
+    1px 0 #181717,
+    0 -1px #181717;
+}
 
+.cool-text-inverse {
+    color: #181717;
+    text-shadow: -1px 0 #08b5bb,
+    0 1px #08b5bb,
+    1px 0 #08b5bb,
+    0 -1px #08b5bb;
+}
+
+/*Help with card body vertical positionong*/
+.card-body {
+    padding-top: .5rem;
+    padding-bottom: .25rem;
+}
+
+.task-body .navbar-dark {
+    border-bottom: 5px solid #08b5bb;
+}
+
+/*Rule for SweetAlert window Border*/
+div.swal2-container.swal2-center.swal2-backdrop-show>div {
+    border: 2px solid #181717;
+}
+
+.swal2-image {
+    box-shadow: 10px 10px 16px #212121
+}
 
 
 
@@ -105,46 +155,39 @@ nav {
     background-color: #fde8cd;
 }
 
-/* The sidebar menu */
-.sidenav {
-    height: 100%;
-    /* Full-height: remove this if you want "auto" height */
-    width: 160px;
-    /* Set the width of the sidebar */
-    position: fixed;
-    /* Fixed Sidebar (stay in place on scroll) */
-    z-index: 1;
-    /* Stay on top */
-    top: 0;
-    /* Stay at the top */
-    left: 0;
-    background-color: #fde8cd;
-    /* Black */
-    overflow-x: hidden;
-    /* Disable horizontal scroll */
-    padding-top: 20px;
+/* The Side Nav Styling hr*/
+.side-nav .col-2 {
+    height: calc(100vh-80px);
+    border-right: 5px solid #014474;
+    max-width: max-content;
 }
 
-/* The navigation menu links */
-.sidenav a {
-    padding: 6px 8px 6px 16px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #181717;
-    display: block;
+/* The Side Nav Styling hr*/
+.side-nav hr {
+    margin-top: 0;
 }
 
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-    color: #f1f1f1;
+/*Link Color on Side Nav*/
+.side-nav .nav-link {
+    color: #014474;
 }
 
-/* Style page content */
-.main {
-    margin-left: 160px;
-    /* Same as the width of the sidebar */
-    padding: 0px 10px;
+/*Hover Effect*/
+.side-nav .nav-item>a:hover {
+    transition: all .2s ease-in-out;
+    transform: scale(1.2);
+    padding-left: 30px;
 }
+
+/*Rule to keep dropdown background black on hover*/
+.dropdown-item:focus, .dropdown-item:hover {
+    background-color: unset;
+}
+
+
+
+
+
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
