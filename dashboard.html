@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Honu</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Favicons -->
+    <link href="/img/favicon.png" rel="icon">
+    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=OriginalSurfer-Regular|OpenSansCondensed">
+    <link rel="stylesheet" href="/fonts/OriginalSurfer-Regular.ttf">
+
+    <link href="/css/site.css" rel="stylesheet">
+    <link href="/css/style.css" rel="stylesheet">
+
+</head>
+
+
+<body>
+    <header>
+        <!-- START Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="">Honu</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="dashboard.html">TASKS <span class="sr-only"></span></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        <div class="jumbotron jumbotron-fluid header">
+            <div class="container hero">
+                <div class="row">
+                    <div class="col">
+                        <h4>Welcome to the Honu Dashboard!</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="row">
+                <div class="offset-2 col-8">
+                    <div class="table-responsive">
+                        <button type="button" data-toggle="modal" data-target="#newTaskItem" class="btn btn-success">Add
+                            a New Task</button>
+                        <table class="table table-striped" id="tasks">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th class="d-none"></th>
+                                    <th>TITLE</th>
+                                    <th>DATE ADDED</th>
+                                    <th>DUE DATE</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tasksBody">
+                                <tr id="taskRow" class="complete">
+                                    <td class="d-none" id="id"></td>
+                                    <td id="title"></td>
+                                    <td id="created"></td>
+                                    <td id="dueDate"></td>
+                                    <td id="tdCrud" data-id=""></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <button type="button" class="btn btn-danger" onclick="clearTask()">Clear Completed
+                            Tasks</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- ======= Footer ======= -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="copyright-box">
+                        <span class="copyright">&copy; Copyright
+                            <a href="https://srussellportfolio.com/" target="blank">
+                                <strong>Shawna Russell</strong></a> All Rights Reserved</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- End  Footer -->
+
+    <!--START TEMPLATE SECTION-->
+    <template id="taskItems-Template">
+        <tr id="taskRow">
+            <td class="d-none" id="id"></td>
+            <td id="title"></td>
+            <td id="created"></td>
+            <td id="dueDate"></td>
+            <td id="tdCrud">
+
+                <a onclick="completeTask(this)" class="btn btn-sm btn-outline-dark btn-success"></a>
+                <a onclick="popEditModal(this)" class="btn btn-sm btn-outline-dark btn-info"></a>
+                <a onclick="deleteTask(this)" class="btn btn-sm btn-outline-dark btn-danger"></a>
+            </td>
+        </tr>
+    </template>
+    <!--END TEMPLATE SECTION-->
+
+
+    <!-- Modal Section -->
+    <div class="modal" id="newTaskItem">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Add a New Task</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form onsubmit="createTask(this)">
+                        <input type="hidden" name="ModalCreate" value="true" />
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="newTask">Title</label>
+                            <input type="text" class="form-control cool-border" name="title" id="title"
+                                placeholder="Enter Task">
+                        </div>
+                        <div class="form-group">
+                            <label class="font-weight-bold" for="description">Due Date:</label>
+                            <input type="date" class="form-control cool-border" name="dueDate" id="dueDate"
+                                placeholder="Enter Due Date">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-secondary btn-wide" onclick="saveTask()" data-dismiss="modal"
+                        style="background-color:rgb(16, 143, 143)">Save
+                        New Task</button>
+                    <button type="" class="btn btn-secondary" style="background-color:rgb(104, 107, 107)"
+                        data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Modal Section -->
+
+    <!--Return to Top-->
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+    <div id="preloader"></div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="/js/site.js"></script>
+
+
+</body>
+
+</html>
