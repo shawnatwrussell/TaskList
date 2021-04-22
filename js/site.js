@@ -27,7 +27,7 @@ function createTask(formData) {
 
     let task = {
         id: generateId(),
-        created: new Date(),
+        created: new Date(),  //Timestamp when inputed
         completed: false,
         title: formData[1].value,
         dueDate: new Date(`${formData[2].value} 00:00`),
@@ -117,6 +117,7 @@ function setLocalStorage(data) {
     localStorage.setItem("taskData", JSON.stringify(date));
 }
 
+//??Format date??
 function renderDate(date) {
 
 }
@@ -129,9 +130,7 @@ function clearToolTip() {
 
 }
 
-function triggerCustomAlert() {
 
-}
 
 function popEditModal() {
 
@@ -169,7 +168,7 @@ function completeTask(button) {
 
 
 
-
+//function triggerCustomAlert() {}
 
 
 
