@@ -2,143 +2,167 @@
 <html lang="en">
 
 <head>
-    <title>Honu</title>
+    <title>Honu Task List App</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Favicons -->
-    <link href="/img/favicon.png" rel="icon">
-    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/site.css">
+    <link rel="stylesheet" href="css/style.css">
 
-    <link href="/css/site.css" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet">
 
 </head>
 
-<body>
-    <header>
-        <!-- START Fixed navbar -->
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class="cool-text" href="">Honu</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html">Task Dashboard <span class="sr-only"></span></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div class="jumbotron jumbotron-fluid header">
-            <div class="container hero">
-                <div class="row">
-                    <div class="col">
-                        <h1>Hello!</h1>
-                        <h4>Welcome to Honu</h4>
+<body class="landing-body">
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #212121;">
+        <a class="navbar-brand" href="Index.html">Honu</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse ml-5" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link " href="Dashboard.html" id="dropdownId">DASHBOARD</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row mt-3">
+            <div class="offset-2 col-8">
+                <div class="card">
+                    <img class="card-img-top cool-border" height="400px" src="img/intro.jpg" alt="Card image cap">
+                    <div class="card-body">
+                        <hr>
+                        <h5 class="h1 font-italic font-weight-bolder text-center cool-text-inverse bg-light">
+                            Honu Task List App</h5>
+                        <hr>
+                        <p class="card-text mt-4">
+                            <div class="row">
+                                <div class="col">
+                                    <div class="card">
+                                        <div
+                                            class="card-header text-center font-weight-bold cool-header cool-border h5">
+                                            WEB STORAGE
+                                        </div>
+                                        <div class="card-body cool-border">
+                                            <p class="card-text">With <b>web storage</b>, web applications can store
+                                                data locally within the user's browser.</p>
+                                            <p class="card-text">Before HTML5, application data had to be stored in
+                                                cookies, included in every server request. Web storage is more secure,
+                                                and large amounts of data can be stored locally, without affecting
+                                                website performance.</p>
+                                            <a href="https://www.w3schools.com/html/html5_webstorage.asp"
+                                                target="_blank" class="font-weight-bold float-right">Read more...</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="card">
+                                        <div
+                                            class="card-header text-center font-weight-bold cool-header cool-border h5">
+                                            JS OBJECTS
+                                        </div>
+                                        <div class="card-body cool-border">
+                                            <p class="card-text"><b>Objects</b> in JavaScript, just as in many other
+                                                programming languages, can be compared to objects in real life. The
+                                                concept of objects in JavaScript can be understood with real life,
+                                                tangible objects.</p>
+                                            <p class="card-text">In JavaScript, an object is a standalone entity with
+                                                properties which define their characteristics.</p>
+                                            <a href="https://www.w3schools.com/js/js_objects.asp" target="_blank"
+                                                class="font-weight-bold float-right">Read more...</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </p>
+                        <a href="Dashboard.html"
+                            class="btn btn-block btn-dark btn-outline-info font-weight-bold mb-2">GO TO MANAGE TASKS
+                            PAGE &rarr;</a>
+                        <h6 style="text-align:center">Honu is Hawaiian for sea turtle, a symbol for Wisdom & Good Luck
+                        </h6>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+    </div>
 
-    <!--SIDEBAR DROPDOWN-->
-    <div class="sidenav">
-        <div class="row">
-            <div class="col =-sm-6">
-                <a href="#"></a>
-                <div class="btn-group">
-                    <button type="button" class="btn btn-secondary">Task Status</button>
-                    <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <span class="sr-only">Toggle Dropdown</span>
-                    </button>
-                    <div id="eventDropDown" class="dropdown-menu">
-                        <!--Template for Dropdown-->
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Modal window for adding a new Task -->
+    <!-- The Modal -->
+    <div class="modal" id="NewTaskModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">CREATE NEW TASK</h4>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Modal body..
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- ======= Footer ======= -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="copyright-box">
+                        <p class="copyright">&copy; Copyright <strong>Shawna Russell</strong>. All Rights Reserved</p>
+                        <div class="credits">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!--END SIDEBAR-->
-
-
-        <!-- Begin page content -->
-        <main role="main" class="container">
-            <div class="container">
-                <div class="row">
-                    <div class="col-8">
-                        <div class="content">
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <div class="row" id="r1c2r1">
-                            <div class="col">
-                                <div class="sidebar-top">
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row" id="r1c2r2">
-                            <div class="col">
-                                <div class="sidebar-bottom">
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-        </main>
+    </footer>
+    <!-- End  Footer -->
 
 
 
-
-
-
-
-
-
-
-
-
-        <!-- ======= Footer ======= -->
-        <footer class="footer">
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="copyright-box">
-                            <span class="copyright">&copy; Copyright
-                                <a href="https://srussellportfolio.com/" target="blank">
-                                    <strong>Shawna Russell</strong></a> All Rights Reserved</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- End  Footer -->
-
-
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
-        </script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
-        </script>
-
-
-
-
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
 
 </html>

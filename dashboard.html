@@ -2,117 +2,131 @@
 <html lang="en">
 
 <head>
-    <title>Honu</title>
+    <title>Honu Task List App</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- Favicons -->
-    <link href="/img/favicon.png" rel="icon">
-    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=OriginalSurfer-Regular|OpenSansCondensed">
-    <link rel="stylesheet" href="/fonts/OriginalSurfer-Regular.ttf">
-
-
-    <link href="/css/site.css" rel="stylesheet">
-    <link href="/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/site.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
+<body class="task-body">
+    <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #212121;">
+        <a class="navbar-brand" href="Index.html">Honu-Home</a>
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse ml-5" id="collapsibleNavId">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link font-weight-bold" href="Dashboard.html" id="dropdownId">DASHBOARD</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" id="txtSearch">
+                <button id="btnSearch" class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
+            </form>
+        </div>
+    </nav>
 
-<body>
-    <header>
-        <!-- START Fixed navbar -->
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <a class="cool-text" href="">Honu</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="dashboard.html">TASKS <span class="sr-only"></span></a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-        <div class="jumbotron jumbotron-fluid header">
-            <div class="container hero">
-                <div class="row">
-                    <div class="col">
-                        <h4>Welcome to the Honu Dashboard!</h4>
+
+    <div class="row side-nav">
+        <div class="col-2" style="background-color: #212121;">
+            <ul class="nav flex-column mt-5">
+                <li class="nav-item">
+                    <a class="nav-link font-weight-bold" data-toggle="modal" data-target="#newTaskItem" href="#"><i
+                            class="fa fa-tachometer-alt pr-3"></i>CREATE TASK</a>
+                </li>
+                <li class="nav-item">
+                    <a onclick="ClearTasks()" class="nav-link font-weight-bold" href="#"><i
+                            class="fa fa-eraser pr-3"></i>CLEAR TASKS</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle font-weight-bold" data-toggle="dropdown" href="#"><i
+                            class="fa fa-filter pr-3"></i>TASKS BY STATUS</a>
+                    <div class="dropdown-menu bg-dark border border-warning">
+                        <a onclick="FilterAll()"
+                            class="dropdown-item font-weight-bold text-white text-center text-uppercase" href="#">All
+                            Tasks</a>
+                        <div class="dropdown-divider"></div>
+                        <a onclick="FilterInComplete()" class="dropdown-item font-weight-bold text-white" href="#"><i
+                                class="fa fa-times pr-3 text-warning"></i>Incomplete</a>
+                        <a onclick="FilterOverDue()" class="dropdown-item font-weight-bold text-white" href="#"><i
+                                class="fa fa-calendar-times pr-3 text-danger"></i>Overdue</a>
+                        <a onclick="FilterCompleted()" class="dropdown-item font-weight-bold text-white" href="#"><i
+                                class="fa fa-check pr-3 text-success"></i>Completed</a>
                     </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col">
+            <div class="row mt-5">
+                <div class="col text-center h4 font-weight-bold">
+                    <h2>Welcome to the Honu Task List App</h2>
+                    <span class="cool-text-inverse" id="taskCount"></span>
                 </div>
             </div>
-        </div>
-    </header>
-
-    <main>
-        <div class="container">
-            <hr>
+            <hr class="cool-line">
             <div class="row">
                 <div class="offset-2 col-8">
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" data-toggle="modal" data-target="#newTaskItem"
+                                class="btn btn-default btn-block btn-primary mb-2 font-weight-bold">
+                                CREATE TASK
+                            </button>
+                        </div>
+                        <div class="col">
+                            <button onclick="ClearTasks()" type="button"
+                                class="btn btn-default btn-block btn-danger mb-2 font-weight-bold">
+                                CLEAR TASKS
+                            </button>
+                        </div>
+                        <div class="col">
+                            <button onclick="FilterAll()" type="button"
+                                class="btn btn-default btn-block btn-success mb-2 font-weight-bold">
+                                CLEAR FILTER
+                            </button>
+                        </div>
+                    </div>
                     <div class="table-responsive">
-                        <button type="button" data-toggle="modal" data-target="#newTaskItem" class="btn btn-success">Add
-                            a New Task</button>
-                        <table class="table table-striped" id="taskData">
+                        <table class="table table-striped" id="eventData">
                             <thead class="thead-dark">
                                 <tr>
                                     <th class="d-none"></th>
-                                    <th>TITLE</th>
-                                    <th>DATE ADDED</th>
-                                    <th>DUE DATE</th>
+                                    <th>Title</th>
+                                    <th>Created</th>
+                                    <th>Due Date</th>
                                     <th></th>
                                 </tr>
                             </thead>
-                            <tbody id="tasksBody">
-                                <tr id="taskRow" class="complete">
-                                    <td class="d-none" id="id"></td>
-                                    <td id="title"></td>
-                                    <td id="created"></td>
-                                    <td id="dueDate"></td>
-                                    <td id="tdCrud" data-id=""></td>
-                                </tr>
+                            <tbody id="taskBody">
+                                <!--Data goes here-->
                             </tbody>
                         </table>
-                        <button type="button" class="btn btn-danger" onclick="clearTask()">Clear Completed
-                            Tasks</button>
                     </div>
                 </div>
             </div>
         </div>
-    </main>
 
-
-
-<!--NAV DROPDOWN ICONS: <i class="fas fa-exclamation-circle"></i> = Overdue
-    <i class="far fa-times-circle"></i> = Incompleted
-    <i class="far fa-check-circle"></i> = Completed
-</i>-->
-
-
-
-
-
-
-
+    </div>
 
 
     <!-- ======= Footer ======= -->
-    <footer class="footer">
+    <footer>
         <div class="container">
             <div class="row">
                 <div class="col-sm-12">
                     <div class="copyright-box">
-                        <span class="copyright">&copy; Copyright
-                            <a href="https://srussellportfolio.com/" target="blank">
-                                <strong>Shawna Russell</strong></a> All Rights Reserved</span>
+                        <p class="copyright">&copy; Copyright <strong>Shawna Russell</strong>. All Rights Reserved</p>
+                        <div class="credits">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -120,105 +134,100 @@
     </footer>
     <!-- End  Footer -->
 
-    <!--START TEMPLATE SECTION-->
-    <template id="taskItems-Template">
-        <tr id="taskRow">
+    <!-- Template tag for helping me output data -->
+    <template id="taskItem-template">
+        <tr id="TaskRow">
             <td class="d-none" id="id"></td>
             <td id="title"></td>
             <td id="created"></td>
             <td id="dueDate"></td>
             <td id="tdCrud">
-
-                <a onclick="completeTask(this)" class="btn btn-sm btn-outline-dark btn-success">Done</a>
-                <!--TODO: Add a Checkbox Btn-->
-                <!--<i class="far fa-check-square"></i><i class="fas fa-check"></i>-->
-                <a onclick="popEditModal(this)" class="btn btn-sm btn-outline-dark btn-info">Edit</a>
-                <!--TOD: Add a Pencil Icon Btn-->
-                <!--<i class="fas fa-pencil-alt"></i><i class="far fa-edit"></i><i class="fas fa-pencil-alt"></i>-->
-                <a onclick="deleteTask(this)" class="btn btn-sm btn-outline-dark btn-danger">Delete</a>
-                <!--TODO: Add a Trashcan Icon Btn-->
-                <!--<i class="fas fa-trash-alt"></i>-->
+                <a onclick="CompleteTask(this)" class="btn btn-sm btn-outline-dark" data-toggle="tooltip"
+                    data-placement="left" title="Mark Task Completed"><i class="text-success fas fa-check"></i></a>
+                <a onclick="PopEditModal(this)" class="btn btn-sm btn-outline-dark" data-toggle="tooltip"
+                    data-placement="bottom" title="Edit Task"><i class="text-primary fas fa-pencil-alt"></i></a>
+                <a onclick="DeleteTask(this)" class="btn btn-sm btn-outline-dark" data-toggle="tooltip"
+                    data-placement="top" title="Delete Task"><i class="text-danger fas fa-trash-alt"></i></a>
+                </div>
             </td>
         </tr>
     </template>
-    <!--END TEMPLATE SECTION-->
 
 
-
-    <!-- NEW TASK Modal Section -->
+    <!-- Modal window for adding a new Task -->
+    <!-- The Modal -->
     <div class="modal" id="newTaskItem">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Add a New Task</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content cool-border">
+
+                <!-- Modal Header -->
+                <div class="modal-header text-center">
+                    <h4 class="modal-title cool-text-inverse">Add New Task</h4>
                 </div>
+
+                <!-- Modal body -->
                 <div class="modal-body">
-                    <form>
+                    <form onsubmit="CreateTask(this)">
                         <input type="hidden" name="ModalCreate" value="true" />
                         <div class="form-group">
-                            <label class="font-weight-bold" for="newTask">Title</label>
-                            <input type="text" class="form-control cool-border" name="title" id="title"
-                                placeholder="Enter Task">
+                            <label class="font-weight-bold" for="Title">Title:</label>
+                            <input type="text" class="form-control cool-border" name="Title" id="Title" required>
                         </div>
                         <div class="form-group">
-                            <label class="font-weight-bold" for="description">Due Date:</label>
-                            <input type="date" class="form-control cool-border" name="dueDate" id="dueDate"
-                                placeholder="Enter Due Date">
+                            <label class="font-weight-bold" for="DueDate">Due Date:</label>
+                            <input type="date" class="form-control cool-border" name="DueDate" id="DueDate" />
                         </div>
+                        <button type="submit" class="btn btn-dark btn-outline-info btn-wide">Submit</button>
                     </form>
+
                 </div>
+
+                <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary btn-wide" onclick="createTask(this)"
-                        data-dismiss="modal" style="background-color:rgb(16, 143, 143)">Save
-                        New Task</button>
-                    <button type="" class="btn btn-secondary" style="background-color:rgb(104, 107, 107)"
-                        data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-dark btn-outline-danger" data-dismiss="modal">Close</button>
                 </div>
+
             </div>
         </div>
     </div>
-    <!-- End Modal Section -->
 
-    <!-- EDIT TASK Modal Section -->
-    <div class="modal" id="editModal">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Edit Task</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+    <!-- Modal window for adding a new Task -->
+    <!-- The Modal -->
+    <div class="modal" id="editTaskItem">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content cool-border">
+
+                <!-- Modal Header -->
+                <div class="modal-header text-center">
+                    <h4 class="modal-title cool-text-inverse">Edit Task</h4>
                 </div>
+
+                <!-- Modal body -->
                 <div class="modal-body">
-                    <form>
-                        <input type="hidden" name="ModalEdit" value="true" />
+                    <form onsubmit="EditTask(this)">
+                        <input type="hidden" name="ModalCreate" value="true" />
+                        <input type="hidden" id="TaskId" />
                         <div class="form-group">
-                            <label class="font-weight-bold" for="editTask">Title</label>
-                            <input type="text" class="form-control cool-border" name="editTitle" id="editTitle"
-                                placeholder="Edit Task">
+                            <label class="font-weight-bold" for="name">Title:</label>
+                            <input type="text" class="form-control cool-border" name="Title" id="NewTitle">
                         </div>
                         <div class="form-group">
                             <label class="font-weight-bold" for="description">Due Date:</label>
-                            <input type="date" class="form-control cool-border" name="editDueDate" id="editDueDate"
-                                placeholder="Edit Due Date">
+                            <input type="date" class="form-control cool-border" name="NewDueDate" id="NewDueDate" />
                         </div>
+                        <button type="submit" class="btn btn-dark btn-outline-info btn-wide">Submit</button>
                     </form>
+
                 </div>
+
+                <!-- Modal footer -->
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-secondary btn-wide" onclick="saveTask(this)"
-                        data-dismiss="modal" style="background-color:rgb(16, 143, 143)">Save Task</button>
-                    <button type="" class="btn btn-secondary" style="background-color:rgb(104, 107, 107)"
-                        data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-dark btn-outline-danger" data-dismiss="modal">Close</button>
                 </div>
+
             </div>
         </div>
     </div>
-    <!-- End Modal Section -->
-
-
-    <!--Return to Top-->
-    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
-    <div id="preloader"></div>
-
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -231,11 +240,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script>
-    <script src="https://kit.fontawesome.com/bd89795843.js" crossorigin="anonymous"></script>
-    <!--https://fontawesome.com/license-->
-
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="/js/site.js"></script>
-
 
 </body>
 
