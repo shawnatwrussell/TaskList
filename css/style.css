@@ -69,7 +69,7 @@ div.swal2-container.swal2-center.swal2-backdrop-show>div {
 /* Side nav styling hr */
 .side-nav .col-2 {
     height: calc(100vh - 80px);
-    border-right: 5px solid #08b5bb;
+    /* border-right: 5px solid #08b5bb; */
     max-width: max-content;
 }
 
